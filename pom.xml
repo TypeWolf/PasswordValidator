@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zipse</groupId>
+    <artifactId>length-password-validator</artifactId>
+    <version>1.1-SNAPSHOT</version>
+
+    <repositories>
+        <repository>
+            <id>athenaeum-brew-maven-repo</id>
+            <url>https://maven.pkg.github.com/athenaeum-brew/maven-repo</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>athenaeum-brew-maven-repo</id>
+            <url>https://maven.pkg.github.com/athenaeum-brew/maven-repo</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <url>https://github.com/athenaeum-brew/maven-repo/packages/2319203</url>
+    </scm>
+    
+    <developers>
+        <developer>
+            <id>dschklar</id>
+            <name>Daniel Schklar</name>
+            <email>dhbw@schklar.de</email>
+        </developer>
+        <developer>
+            <id>TypeWolf</id>
+            <name>Luis Zipse</name>
+            <email>lui.zipse.24@heilbronn.dhbw.de</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <!-- miscellaneous -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>23</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+    </properties>
+
+    <dependencies>
+        <!-- Dependencies -->
+       <dependency>
+            <groupId>com.cthiebaud</groupId>
+            <artifactId>password-validator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>
