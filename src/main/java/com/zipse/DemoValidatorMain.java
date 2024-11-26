@@ -45,6 +45,7 @@ public class DemoValidatorMain implements PasswordValidator {
     }
 
     /**
+     * 
      * Plays a WAV file located in the classpath.
      * 
      * @param filePath the path to the WAV file relative to the classpath
