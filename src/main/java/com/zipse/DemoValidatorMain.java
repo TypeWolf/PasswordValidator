@@ -18,7 +18,7 @@ public class DemoValidatorMain implements PasswordValidator {
 
         if (password == null || password.isEmpty()) {
             playWavFromClasspath("sounds/unsecure.wav");
-            printFileContent("password-validator\src\resources\securePasswordInstruction.txt");
+            printFileContent("securePasswordInstruction.txt");
             return new ValidationResult(false, "Password cannot be empty.");
         }
 
@@ -27,7 +27,7 @@ public class DemoValidatorMain implements PasswordValidator {
             return new ValidationResult(true, "Password is valid.");
         } else {
             playWavFromClasspath("sounds/unsecure.wav");
-            printFileContent("password-validator\src\resources\securePasswordInstruction.txt");
+            printFileContent("securePasswordInstruction.txt");
             return new ValidationResult(false, "Password must be at least " + MIN_LENGTH + " characters long.");
         }
     }
