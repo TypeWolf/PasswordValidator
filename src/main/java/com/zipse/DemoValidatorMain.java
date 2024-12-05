@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.FileReader;
 
 public class DemoValidatorMain implements PasswordValidator {
@@ -32,7 +33,7 @@ public class DemoValidatorMain implements PasswordValidator {
         }
     }
 
-    private void playSound(String soundFilePath) {
+    /*private void playSound(String soundFilePath) {
         try {
             File soundFile = new File(soundFilePath);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
@@ -42,7 +43,7 @@ public class DemoValidatorMain implements PasswordValidator {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.err.println("Error playing sound: " + e.getMessage());
         }
-    }
+    }*/
 
     /**
      * 
@@ -55,48 +56,45 @@ public class DemoValidatorMain implements PasswordValidator {
      * @throws LineUnavailableException      if the audio line is unavailable
      * @throws InterruptedException          if the playback is interrupted
      */
-    public static void playWavFromClasspath(String filePath) {
-        try (
-                // Load the .wav file from the classpath
-                InputStream inputStream = DemoValidatorMain.class.getClassLoader().getResourceAsStream(filePath);
-                InputStream bufferedIn = new BufferedInputStream(inputStream);
-                // Create an AudioInputStream from the InputStream
-                AudioInputStream audioStream = inputStream == null ? null
-                        : AudioSystem.getAudioInputStream(bufferedIn)) {
+
+     public static void playWavFromClasspath(String filePath) {
+        try (InputStream inputStream = DemoValidatorMain.class.getClassLoader().getResourceAsStream(filePath);
+             BufferedInputStream bufferedIn = inputStream == null ? null : new BufferedInputStream(inputStream);
+             AudioInputStream audioStream = inputStream == null ? null : AudioSystem.getAudioInputStream(bufferedIn)) {
+    
             if (audioStream == null) {
                 throw new IOException("WAV file not found on the classpath: " + filePath);
             }
-
-            // Obtain a Clip directly from the AudioSystem
+    
             Clip clip = AudioSystem.getClip();
-
-            // Open the audio stream
             clip.open(audioStream);
-
+    
             try {
-                // Play the audio
                 clip.start();
-
-                // Keep the program running to allow the sound to play completely
                 Thread.sleep(clip.getMicrosecondLength() / 1000);
             } finally {
-                clip.close(); // Close the clip explicitly
+                clip.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error playing sound: " + e.getMessage());
         }
     }
+    
+
 
     private void printFileContent(String filePath) {
-        try (BufferedReader reader = new BufferedReader(
-                new FileReader(getClass().getClassLoader().getResource(filePath).getFile()))) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
+            BufferedReader reader = inputStream == null ? null : new BufferedReader(new InputStreamReader(inputStream))) {
+            if (reader == null) {
+                throw new IOException("File not found: " + filePath);
+            }
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
-            reader.close();
         } catch (IOException e) {
         System.err.println("Error reading file: " + e.getMessage());
     }
 }
+
 }
