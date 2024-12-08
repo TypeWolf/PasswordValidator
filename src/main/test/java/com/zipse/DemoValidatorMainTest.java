@@ -2,8 +2,7 @@ package com.zipse;
 
 import com.cthiebaud.passwordvalidator.ValidationResult;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions.*;
 
 class DemoValidatorMainTest {
 
@@ -14,7 +13,7 @@ class DemoValidatorMainTest {
         ValidationResult result = validator.validate("");
 
         assertFalse(result.isValid());
-        assertEquals("Password cannot be empty.", result.getMessage());
+        assertEquals("Password cannot be empty.", result.Message());
     }
 
     @Test
@@ -24,7 +23,7 @@ class DemoValidatorMainTest {
         ValidationResult result = validator.validate("securePassword");
 
         assertTrue(result.isValid());
-        assertEquals("Password is valid.", result.getMessage());
+        assertEquals("Password is valid.", result.Message());
     }
 
     @Test
@@ -34,6 +33,6 @@ class DemoValidatorMainTest {
         ValidationResult result = validator.validate("123");
 
         assertFalse(result.isValid());
-        assertEquals("Password must be at least 6 characters long.", result.getMessage());
+        assertEquals("Password must be at least 6 characters long.", result.Message());
     }
 }

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 
+
 public class DemoValidatorMain implements PasswordValidator {
     private static final int MIN_LENGTH = 6;
 
